@@ -35,7 +35,7 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->role->name }}</td>
+                            <td>{{ $user->roles->pluck('name')->join(', ') ?: 'Sin Rol' }}</td>
                             <td>
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-warning">
                                     <i class="bi bi-pencil-square"></i>

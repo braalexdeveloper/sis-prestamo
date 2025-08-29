@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -30,8 +31,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|string|max:255',
-            'description'=>'nullable|string'
+            'name'=>'required|string|max:255'
         ]);
 
         Role::create($request->all());
@@ -62,8 +62,7 @@ class RoleController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name'=>'required|string|max:255',
-            'description'=>'nullable|string'
+            'name'=>'required|string|max:255'
         ]);
 
         $role=Role::findOrFail($id);

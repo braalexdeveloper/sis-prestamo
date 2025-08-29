@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
-        body, html {
+        body,
+        html {
             height: 100%;
         }
 
@@ -21,7 +23,8 @@
         /* Sidebar */
         #sidebar-wrapper {
             width: 250px;
-            background-color: #0e397aff; /* Bootstrap primary */
+            background-color: #0e397aff;
+            /* Bootstrap primary */
             color: white;
             flex-shrink: 0;
             display: flex;
@@ -33,7 +36,7 @@
             font-size: 1.25rem;
             font-weight: bold;
             text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         #sidebar-wrapper .list-group-item {
@@ -43,7 +46,7 @@
         }
 
         #sidebar-wrapper .list-group-item:hover {
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         /* Page content */
@@ -54,10 +57,11 @@
 
         /* Top navbar */
         .navbar {
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
+
 <body>
     <div id="wrapper">
 
@@ -71,8 +75,10 @@
                 <a href="{{route('clients.index')}}" class="list-group-item list-group-item-action">Clientes</a>
                 <a href="{{route('loans.index')}}" class="list-group-item list-group-item-action">Préstamos</a>
                 <a href="" class="list-group-item list-group-item-action">Pagos</a>
+                @role('Admin')
                 <a href="{{route('users.index')}}" class="list-group-item list-group-item-action">Usuarios</a>
                 <a href="{{route('roles.index')}}" class="list-group-item list-group-item-action">Roles</a>
+                @endrole
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -82,14 +88,27 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
                 <div class="container-fluid d-flex justify-content-between">
                     <span class="navbar-brand mb-0 h1">Dashboard</span>
+                    
+                         <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
 
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                    
                     <div class="dropdown">
+
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="accountMenu" data-bs-toggle="dropdown" aria-expanded="false">
                             Cuenta
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountMenu">
                             <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                            <li>
+                                csd
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -103,4 +122,5 @@
 
     </div>
 </body>
+
 </html>

@@ -26,7 +26,7 @@
                     <tr>
                         <th>#</th>
                         <th>Nombre</th>
-                        <th>Descripción</th>
+                        
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -35,7 +35,7 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $role->name }}</td>
-                            <td>{{ $role->description ?? 'Sin descripción' }}</td>
+                            
                             <td>
                                 <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-sm btn-warning">
                                     <i class="bi bi-pencil-square"></i> Editar

@@ -7,15 +7,16 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('home');
-})->name('dashboard');
+
 
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+    return view('layouts.dashboard');
+})->name('dashboard');
     //Ruta para administradores
     Route::middleware(['role:Admin'])->group(function () {
         Route::resource('roles', RoleController::class);
@@ -23,13 +24,17 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // Rutas para PRÉSTAMOS (todos los usuarios autenticados)
-    Route::middleware(['permission:view loans'])->group(function () {
+    Route::middleware(['role:User|Admin'])->group(function () {
         Route::get('/loans/search-client', [LoanController::class, 'getClientByDni'])->name('loans.getClientByDni');
         Route::resource('loans', LoanController::class);
     });
 
     // Rutas para CLIENTES (todos los usuarios autenticados)
-    Route::middleware(['permission:view clients'])->group(function () {
+    Route::middleware(['role:User|Admin'])->group(function () {
         Route::resource('clients', ClientController::class);
     });
 });
+
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
